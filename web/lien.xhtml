@@ -10,6 +10,18 @@
 
     <br />
     <h:link value="index" outcome="index" />
+    <br />
+    <br />
+
+    <ul>
+        <ui:repeat value="#{bookCatalog.studentList}" var="book">
+            <li>
+                <h:link value="#{book.title}" outcome="book">
+                    <f:param name="id" value="#{book.id}" />
+                </h:link>
+            </li>
+        </ui:repeat>
+    </ul>
 
 </f:view>
 </html>

@@ -1,48 +1,58 @@
 package exemple;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.Random;
 
-@Named
-@RequestScoped
+
+@ManagedBean
+@SessionScoped
 public class GameGrandPetit {
+   private int randomNumber;
+
+    public String getHelp() {
+        return help;
+    }
+
+    public void setHelp(String help) {
+        this.help = help;
+    }
+
+    private String help;
+    private int nb;
+
+    public int getNb() {
+        return nb;
+    }
+
+    public void setNb(int nb) {
+        this.nb = nb;
+    }
+
+    public GameGrandPetit() {
+        this.randomNumber = new Random().nextInt(100);
+    }
+
+    public void helpPlayer(){
+        if(nb < randomNumber){
+            help =  "Trop petit";
+        }else if(nb > randomNumber){
+            help = "Trop Grand";
+        }else if(nb == randomNumber){
+            help =  "BRAVO";
+        }else{
+            help = "rentrez un nombre valide";
+        }
+
+    }
+
+
     public int getRandomNumber() {
         return randomNumber;
     }
 
-    
-
-    public String getTest() {
-        return test;
+    public void setRandomNumber(int randomNumber) {
+        this.randomNumber = randomNumber;
     }
-
-    public void setTest(String test) {
-        this.test = test;
-    }
-
-    public String indication(){
-        if(givenNb > randomNumber){
-            return "TropGrand";
-        }else if(givenNb < randomNumber){
-            return "Trop Petit";
-        }else{
-            return "Vous avez gagné!!";
-        }
-    }
-
-
-
-    public int getGivenNb() {
-        return givenNb;
-    }
-
-    public void setGivenNb(int givenNb) {
-        this.givenNb = givenNb;
-    }
-
-    final int randomNumber = new Random().nextInt(100);
-    int givenNb;
-    String test = "tt";
-
 }
