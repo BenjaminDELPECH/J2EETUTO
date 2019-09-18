@@ -1,6 +1,7 @@
 package exemple;
 
-import javax.faces.bean.RequestScoped;
+
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 @Named
@@ -15,8 +16,7 @@ public class Etudiant {
     }
 
     private String nom;
-    String prenom;
-    String age;
+
 
 
 }

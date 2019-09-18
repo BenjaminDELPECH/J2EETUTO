@@ -6,17 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="What do you think about gphy?"/>
-    <h:form>
-        <h:inputText value="#{etudiant.nom}"/>
+    <h:outputLabel value="lien"/>
 
-    </h:form>
     <br />
-    <h:outputText value="#{etudiant.nom}"/>
-    <br />
-    <h:link value="lien" outcome="#{lien.lelien()}" />
-
-    <h:commandButton value="Go" action="#{lien.lelien}" />
+    <h:link value="index" outcome="index" />
 
 </f:view>
 </html>
