@@ -6,17 +6,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="What do you think about gphy?"/>
+    <h:outputLabel value="Give me a number?"/>
     <h:form>
-        <h:inputText value="#{etudiant.nom}"/>
-
+        <h:inputText value="#{gameGrandPetit.givenNb}"/>
     </h:form>
-    <br />
-    <h:outputText value="#{etudiant.nom}"/>
-    <br />
-    <h:link value="lien" outcome="#{lien.lelien()}" />
+    <br/>
+    <h:outputText value="#{gameGrandPetit.randomNumber}"/>
+    <h:outputText value="#{gameGrandPetit.indication()}"/>
 
-    <h:commandButton value="Go" action="#{lien.lelien()}" />
+
+
+
+
+
+
+
+<!--    <br/>-->
+<!--    <h:link value="lien" outcome="#{lien.lelien()}"/>-->
+<!--    <h:commandButton value="Go" action="#{lien.lelien()}"/>-->
 
 </f:view>
 </html>
