@@ -5,11 +5,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Named
-@RequestScoped
+
 public class Etudiant {
-
-
+    public Etudiant(String nom) {
+        this.nom = nom;
+    }
 
     public String getNom() {
         return nom;
@@ -20,7 +20,4 @@ public class Etudiant {
     }
 
     private String nom;
-
-
-
 }

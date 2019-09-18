@@ -7,12 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <f:view>
     <h:form rendered="#{gameGrandPetit.nb != gameGrandPetit.randomNumber}">
-        <h:inputText binding="#{input1}" value="#{gameGrandPetit.nb}"/>
+        <h:inputText value="#{gameGrandPetit.nb}"/>
         <h:commandButton value="Test" action="#{gameGrandPetit.helpPlayer()}"/>
     </h:form>
+
+
     <h:outputText value="#{gameGrandPetit.randomNumber}"/>
     <h:outputText value="#{gameGrandPetit.help}"/>
 
+<br />
+    <br />
+    <h:link value="studentList" outcome="studentList" />
 
 </f:view>
 </html>

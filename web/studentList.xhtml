@@ -6,14 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="lien"/>
-
-    <br />
-    <h:link value="index" outcome="index" />
-    <br />
-    <br />
 
 
+    <ui:repeat value="#{listStudent.studentList}" var="value">
+        #{value.nom} <br />
+    </ui:repeat>
 
+    <h:form>
+        <h:inputText value="#{}" />
+    </h:form>
 </f:view>
 </html>

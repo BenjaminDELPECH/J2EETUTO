@@ -10,6 +10,14 @@ import java.util.Random;
 @SessionScoped
 public class GameGrandPetit {
    private int randomNumber;
+    private String help;
+    private int nb;
+
+    public GameGrandPetit() {
+        this.randomNumber = new Random().nextInt(100);
+    }
+
+
 
     public String getHelp() {
         return help;
@@ -19,8 +27,7 @@ public class GameGrandPetit {
         this.help = help;
     }
 
-    private String help;
-    private int nb;
+
 
     public int getNb() {
         return nb;
@@ -30,9 +37,7 @@ public class GameGrandPetit {
         this.nb = nb;
     }
 
-    public GameGrandPetit() {
-        this.randomNumber = new Random().nextInt(100);
-    }
+
 
     public void helpPlayer(){
         if(nb < randomNumber){
