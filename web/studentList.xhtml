@@ -2,8 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <!--
     using h:head will auto include your javascript resources
@@ -11,46 +12,72 @@
     -->
 </h:head>
 <h:body>
-
-    <h1>Student List</h1>
-
-    <h:form id="todoForm">
-        <h:dataTable id="todoTable" value="#{todoBean.todoList}" var="todo">
+    <br/>
+    <h:link value="index" outcome="index"/>
+    <br/>
+    <br/>
+    <h:outputLabel value="Student List"/>
+    <br/>
+    <br/>
+    <h:form id="studentForm">
+        <h:dataTable id="studentList" value="#{studentBean.studentList}" var="student" border="1" cellpadding="3">
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Todo"/>
+                    <h:outputText value="Name"/>
                 </f:facet>
-                <h:inputText value="#{todo.description}" rendered="#{todo.editable}" />
-                <h:outputText value="#{todo.description}" rendered="#{not todo.editable}" />
+                <h:inputText value="#{student.name}" rendered="#{student.editable}"/>
+                <h:outputText value="#{student.name}" rendered="#{not student.editable}"/>
             </h:column>
             <h:column>
-                <h:commandLink value="Edit" action="#{todoBean.edit(todo)}" rendered="#{not todo.editable}" >
-                    <f:ajax render="todoForm:todoTable" />
+                <f:facet name="header">
+                    <h:outputText value="First name"/>
+                </f:facet>
+                <h:inputText value="#{student.firstName}" rendered="#{student.editable}"/>
+                <h:outputText value="#{student.firstName}" rendered="#{not student.editable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Age"/>
+                </f:facet>
+                <h:inputText value="#{student.age}" rendered="#{student.editable}"/>
+                <h:outputText value="#{student.age}" rendered="#{not student.editable}"/>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Edit" action="#{studentBean.edit(student)}" rendered="#{not student.editable}">
+                    <f:ajax render="studentForm:studentList"/>
                 </h:commandLink>
-                <h:commandLink value="Save" action="#{todoBean.save(todo)}" rendered="#{todo.editable}" >
-                    <f:ajax execute="@form" render="todoForm:todoTable" />
+                <h:commandLink value="Save" action="#{studentBean.save(student)}" rendered="#{student.editable}">
+                    <f:ajax execute="@form" render="studentForm:studentList"/>
+                </h:commandLink>
+            </h:column>
+            <h:column rendered="#{student.editable}">
+                <h:commandLink value="Cancel" action="#{studentBean.cancelEdit(student)}">
+                    <f:ajax render="studentForm:studentList"/>
                 </h:commandLink>
             </h:column>
             <h:column>
-                <h:commandLink value="Cancel" action="#{todoBean.cancelEdit(todo)}" rendered="#{todo.editable}" >
-                    <f:ajax render="todoForm:todoTable" />
-                </h:commandLink>
-            </h:column>
-            <h:column>
-                <h:commandLink id="remove" value="delete" action="#{todoBean.remove(todo)}"
-                               onclick="return confirm('Are you sure?')">
-                    <f:ajax render="todoForm:todoTable" />
+                <h:commandLink value="Delete" action="#{studentBean.delete(student)}">
+                    <f:ajax render="studentForm:studentList"/>
                 </h:commandLink>
             </h:column>
         </h:dataTable>
 
-        <h2>Add todo to table</h2>
-        <h:outputLabel value="Todo: ">
-            <h:inputText id="todo" value="#{todoBean.description}" />
+        <br/>
+        <h5>Add Student</h5>
+        <h:outputLabel value="Name: ">
+            <h:inputText id="studentName" value="#{studentBean.name}"/>
         </h:outputLabel>
-
-        <h:commandButton value="Add record" action="#{todoBean.add}">
-            <f:ajax execute="todoForm" render="todoForm:todoTable" />
+        <br/>
+        <h:outputLabel value="First Name: ">
+            <h:inputText id="studentFirstName" value="#{studentBean.firstName}"/>
+        </h:outputLabel>
+        <br/>
+        <h:outputLabel value="Age: ">
+            <h:inputText id="studentAge" value="#{studentBean.age}"/>
+        </h:outputLabel>
+        <br/>
+        <h:commandButton value="Add student" action="#{studentBean.add}">
+            <f:ajax execute="studentForm" render="studentForm:studentList"/>
         </h:commandButton>
 
     </h:form>
