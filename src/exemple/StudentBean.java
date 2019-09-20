@@ -6,12 +6,13 @@ import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(eager = true)
 @SessionScoped
 public class StudentBean {
     private List<Student> studentList;
     private String name;
     private String firstName;
+    private int age;
 
     @PostConstruct
     private void init() {
@@ -26,9 +27,9 @@ public class StudentBean {
         student.setEditable(true);
     }
 
-    public void save(Student student) {
-        studentList.set(studentList.indexOf(student), student);
-        cancelEdit(student);
+    public void save(Student newStudent) {
+        studentList.set(studentList.indexOf(newStudent), newStudent);
+        cancelEdit(newStudent);
     }
 
 
@@ -37,7 +38,7 @@ public class StudentBean {
     }
 
     public void add(){
-        studentList.add(new Student(name, firstName, 22));
+        studentList.add(new Student(name, firstName, age));
     }
 
     public void delete(Student student) {
@@ -67,8 +68,6 @@ public class StudentBean {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    private int age;
 
     public List<Student> getStudentList() {
         return studentList;
