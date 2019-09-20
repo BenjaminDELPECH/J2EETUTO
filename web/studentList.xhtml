@@ -7,13 +7,46 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
+    <h:form id="todoForm">
+        <h:dataTable id="todoTable" value="#{todoBean.todoList}" var="todo">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Todo"/>
+                </f:facet>
+                <h:inputText value="#{todo.description}" rendered="#{todo.editable}" />
+                <h:outputText value="#{todo.description}" rendered="#{not todo.editable}" />
+            </h:column>
+            <h:column>
+                <h:commandLink value="Edit" action="#{todoBean.edit(todo)}" rendered="#{not todo.editable}" >
+                    <f:ajax render="todoForm:todoTable" />
+                </h:commandLink>
+                <h:commandLink value="Save" action="#{todoBean.save(todo)}" rendered="#{todo.editable}" >
+                    <f:ajax execute="@form" render="todoForm:todoTable" />
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Cancel" action="#{todoBean.cancelEdit(todo)}" rendered="#{todo.editable}" >
+                    <f:ajax render="todoForm:todoTable" />
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <h:commandLink id="remove" value="delete" action="#{todoBean.remove(todo)}"
+                               onclick="return confirm('Are you sure?')">
+                    <f:ajax render="todoForm:todoTable" />
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
 
-    <ui:repeat value="#{listStudent.studentList}" var="value">
-        #{value.nom} <br />
-    </ui:repeat>
+        <h2>Add todo to table</h2>
+        <h:outputLabel value="Todo: ">
+            <h:inputText id="todo" value="#{todoBean.description}" />
+        </h:outputLabel>
 
-    <h:form>
-        <h:inputText value="#{}" />
+        <h:commandButton value="Add record" action="#{todoBean.add}">
+            <f:ajax execute="todoForm" render="todoForm:todoTable" />
+        </h:commandButton>
+
     </h:form>
+
 </f:view>
 </html>
